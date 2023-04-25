@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: circleci/python:3.6.7-stretch
 
-    working_directory: ~/environment/DevOps/project-ml-microservice-kubernetes
+    working_directory: ~/environment/DevOps/project-ml-microservice-kubernetes 
 
     steps:
       - checkout
