@@ -38,5 +38,3 @@ jobs:
             . venv/bin/activate
             cd project-ml-microservice-kubernetes
             make lint
-            sudo dockerd
-            ./run_docker.sh
