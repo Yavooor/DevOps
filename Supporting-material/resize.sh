@@ -1,16 +1,10 @@
 #!/bin/bash
 
 # Specify the desired volume size in GiB as a command line argument. If not specified, default to 20 GiB.
-SIZE=${1:-20}
-
-# Get the ID of the environment host Amazon EC2 instance.
-INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+SIZE=${1:-30}
 
 # Get the ID of the Amazon EBS volume associated with the instance.
-VOLUMEID=$(aws ec2 describe-instances \
-  --instance-id $INSTANCEID \
-  --query "Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId" \
-  --output text)
+VOLUMEID=$(aws ec2 describe-instances --query "Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId" --output text)
 
 # Resize the EBS volume.
 aws ec2 modify-volume --volume-id $VOLUMEID --size $SIZE
